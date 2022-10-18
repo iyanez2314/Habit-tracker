@@ -11,9 +11,6 @@ export default function App() {
   const [todoItems, setTodoItems] = useState([]);
   const [editTodo, setEditTodo] = useState('');
 
-  
-  
-
   function todoInputHandler(){
     setTodoItems((currentTodo) => [
       ...currentTodo,
@@ -34,10 +31,6 @@ export default function App() {
     const prevIndex = todoItems.findIndex(item => item.key === rowKey);
     newData.splice(prevIndex, 1);
     setTodoItems(newData);
-  };
-
-  function handleEdit(){
-    
   };
 
   return (

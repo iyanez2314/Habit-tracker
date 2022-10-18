@@ -12,7 +12,11 @@ const Todo = (props) => {
     WHEN I EDIT
     */}
 
+    
+
     const {text, setEditTodo, todoItems} = props;
+
+
 
     function UpdatedItem(){
         setIsEditing(false);
