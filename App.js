@@ -48,7 +48,7 @@ export default function App() {
 
         <View style={styles.todoListItems}>
           <SwipeListView data={todoItems} renderItem={(data, rowMap) => (
-            <Todo text={data.item.text} setEditTodo={setEditTodo} todoItems={todoItems} key={data.item.key} handleEdit={handleEdit}/>
+            <Todo text={data.item.text} setEditTodo={setEditTodo} todoItems={todoItems} key={data.item.key}/>
           )} renderHiddenItem={(data, rowMap) => {
             return (
               <HiddenItemsWithActions

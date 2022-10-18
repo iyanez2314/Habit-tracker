@@ -6,17 +6,8 @@ import EditIcon from 'react-native-vector-icons/MaterialIcons';
 const Todo = (props) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editedTodo, setEditedTodo] = useState('');
-
-   {/*
-    TODO: I NEED TO FIGURE OUT HOW TO PERSIST THE DATA AFTER UPDATING THE DATA
-    WHEN I EDIT
-    */}
-
-    
-
+    const [isOpacity, setIsOpacity] = useState(false);
     const {text, setEditTodo, todoItems} = props;
-
-
 
     function UpdatedItem(){
         setIsEditing(false);
@@ -24,6 +15,10 @@ const Todo = (props) => {
 
     function editPressed(){
         setIsEditing(true);
+    };
+
+    function toggleStrikeThrough(){
+        setIsOpacity(true);
     };
     
     return (
@@ -38,7 +33,10 @@ const Todo = (props) => {
                             defaultValue={text}
                              />
                         ) : (
-                            <Text style={styles.todoText}>{editedTodo.length > 0 ? editedTodo : props.text }</Text>
+                            <Pressable style={styles.todoText} onPress={toggleStrikeThrough}>
+                            <Text style={[styles.text, {textDecorationLine: isOpacity ? 'line-through' : 'none'}]}>{editedTodo.length > 0 ? editedTodo : props.text }</Text>
+                            </Pressable>
+                            
                         )
                     }
                 </View>
@@ -91,8 +89,8 @@ const styles = StyleSheet.create({
         maxWidth: '80%',
         color: 'white'
     },
-    editButtons: {
-       
+    text: {
+       color: 'white'
     }
 })
 
