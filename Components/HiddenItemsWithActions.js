@@ -25,7 +25,7 @@ export default HiddenItemsWithActions;
 
 const styles = StyleSheet.create({
     actionsContainer: {
-        backgroundColor: '#A8DFF1',
+        backgroundColor: '#83D5B2',
         borderRadius: 12,
         flexDirection: 'row',
         justifyContent: 'flex-end',

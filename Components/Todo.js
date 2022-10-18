@@ -2,6 +2,7 @@ import {View, Text, StyleSheet, TouchableOpacity, TextInput, Pressable, Button} 
 import { useState } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import EditIcon from 'react-native-vector-icons/MaterialIcons';
+import Checkmark from 'react-native-vector-icons/Ionicons';
 
 const Todo = (props) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -18,23 +19,32 @@ const Todo = (props) => {
     };
 
     function toggleStrikeThrough(){
-        setIsOpacity(true);
+        setIsOpacity(!isOpacity);
     };
+
     
     return (
         <View style={styles.todoItems}>
                 <View style={styles.itemsLeft}>
-                    <TouchableOpacity style={styles.square}></TouchableOpacity>
+                    <Pressable style={styles.square} onPress={toggleStrikeThrough}>
+                        {
+                            isOpacity ? (
+                                <Checkmark style={styles.Checkmark} name="ios-checkmark" color='#EA7351' size={20}/>
+                            ) : (
+                                <Checkmark style={[styles.Checkmark, {display: 'none'}]} name="ios-checkmark" color='#EA7351' size={20}/>
+                            )
+                        }
+                    </Pressable>
                     {
                         isEditing ? (
                             <TextInput
-                            style={styles.todoText}
+                            style={styles.updatingTodoText}
                             onChangeText={(text) => setEditedTodo(text)}
-                            defaultValue={text}
+                            defaultValue={text !== editedTodo ? editedTodo : text}
                              />
                         ) : (
                             <Pressable style={styles.todoText} onPress={toggleStrikeThrough}>
-                            <Text style={[styles.text, {textDecorationLine: isOpacity ? 'line-through' : 'none'}]}>{editedTodo.length > 0 ? editedTodo : props.text }</Text>
+                                <Text style={[styles.text, {textDecorationLine: isOpacity ? 'line-through' : 'none'}]}>{editedTodo.length > 0 ? editedTodo : props.text }</Text>
                             </Pressable>
                             
                         )
@@ -64,7 +74,7 @@ export default Todo;
 
 const styles = StyleSheet.create({
     todoItems:{
-        backgroundColor: '#3D7C98',
+        backgroundColor: '#F8CA6D',
         padding: 15,
         borderRadius: 12,
         flexDirection: 'row',
@@ -80,17 +90,30 @@ const styles = StyleSheet.create({
     square: {
         width: 24,
         height: 24,
-        backgroundColor: '#F5F5F5',
-        opacity: 0.4,
+        backgroundColor: 'white',
         borderRadius: 5,
-        marginRight: 15
+        marginRight: 15,
+        opacity: 0.9,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     todoText: {
         maxWidth: '80%',
-        color: 'white'
+        color: 'white',
     },
     text: {
-       color: 'white'
+       color: 'white',
+       fontSize: 16
+    },
+    Checkmark: {
+        paddingRight: 6,
+    },
+    updatingTodoText: {
+        maxWidth: '80%',
+        color: '#83D5B2',
+        fontSize: 16,
+        backgroundColor: '#A8DFF1',
+
     }
 })
 

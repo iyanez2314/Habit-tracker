@@ -73,7 +73,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5'
+    backgroundColor: 'white'
   },
   todoListContainer: {
     paddingTop: 150,
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     borderRadius: 60,
     width: 230,
-    borderColor: '#A8DFF1',
+    borderColor: '#83D5B2',
     borderWidth: 1,
   },
   addTodoContainer: {
@@ -124,11 +124,11 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#A8DFF1',
+    borderColor: '#83D5B2',
     borderWidth: 1,
   },
   addIcon: {
-    color: '#A8DFF1',
+    color: '#83D5B2',
     fontSize: 24
   }
 });
