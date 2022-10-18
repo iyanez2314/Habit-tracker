@@ -1,15 +1,18 @@
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons'
+import { View, TouchableOpacity, Text, StyleSheet, Modal } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { useState } from 'react';
 
 const HiddenItemsWithActions = (props) => {
     const { data, rowMap, onCloseRow, onDeleteRow, onPressItem } = props;
 
+    
+
     return(
         <View style={styles.actionsContainer}>
             <View style={styles.btnContainer}>
-                <TouchableOpacity style={styles.closeBtn} onPress={onCloseRow}>
+                {/* <TouchableOpacity style={styles.closeBtn} onPress={onCloseRow}>
                     <Icon style={styles.closeIcon} name="return-up-back" size={17} color='#fff'/>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             <TouchableOpacity style={styles.deleteBtn} onPress={onDeleteRow}>
                 <Icon style={styles.deleteIcon} name="trash-outline" size={17} color='#fff'/>
             </TouchableOpacity>

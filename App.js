@@ -9,6 +9,9 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 export default function App() {
   const [todo , setTodo] = useState();
   const [todoItems, setTodoItems] = useState([]);
+  const [editTodo, setEditTodo] = useState('');
+
+  
   
 
   function todoInputHandler(){
@@ -17,12 +20,6 @@ export default function App() {
       { text: todo, key: Math.random().toString() }
     ]);
     setTodo(null);
-  };
-
-  function deleteTodoHandler(index){
-    let itemsCopy = [...todoItems];
-    itemsCopy.splice(index, 1);
-    setTodoItems(itemsCopy);
   };
 
   function closeRow(rowMap, rowKey){
@@ -37,6 +34,10 @@ export default function App() {
     const prevIndex = todoItems.findIndex(item => item.key === rowKey);
     newData.splice(prevIndex, 1);
     setTodoItems(newData);
+  };
+
+  function handleEdit(){
+    
   };
 
   return (
@@ -54,7 +55,7 @@ export default function App() {
 
         <View style={styles.todoListItems}>
           <SwipeListView data={todoItems} renderItem={(data, rowMap) => (
-            <Todo text={data.item.text}/>
+            <Todo text={data.item.text} setEditTodo={setEditTodo} todoItems={todoItems} key={data.item.key} handleEdit={handleEdit}/>
           )} renderHiddenItem={(data, rowMap) => {
             return (
               <HiddenItemsWithActions
@@ -65,12 +66,11 @@ export default function App() {
              />
             )
           }}
-            leftOpenValue={60}
-            rightOpenValue={-120}
+            leftOpenValue={50}
+            rightOpenValue={-50}
             stopLeftSwipe={1}
           />
         </View>
-        
       </View>
     </View>
    

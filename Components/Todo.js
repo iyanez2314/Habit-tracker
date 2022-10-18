@@ -1,12 +1,57 @@
-import {View, Text, StyleSheet, TouchableOpacity, FlatList, Pressable} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, TextInput, Pressable, Button} from 'react-native';
 import { useState } from 'react';
 
 const Todo = (props) => {
+    const [isEditing, setIsEditing] = useState(false);
+    const [editedTodo, setEditedTodo] = useState('');
+
+   {/*
+    TODO: I NEED TO FIGURE OUT HOW TO PERSIST THE DATA AFTER UPDATING THE DATA
+    WHEN I EDIT
+    */}
+
+    const {text, setEditTodo, todoItems} = props;
+
+    function UpdatedItem(){
+        console.log(editedTodo);
+        setIsEditing(false);
+    };
+
+    function editPressed(){
+        setIsEditing(true);
+    };
+    
     return (
         <View style={styles.todoItems}>
                 <View style={styles.itemsLeft}>
                     <TouchableOpacity style={styles.square}></TouchableOpacity>
-                        <Text style={styles.todoText}>{props.text}</Text>
+                    {
+                        isEditing ? (
+                            <TextInput
+                            style={styles.todoText}
+                            onChangeText={(text) => setEditedTodo(text)}
+                            defaultValue={text}
+                             />
+                        ) : (
+                            <Text style={styles.todoText}>{props.text}</Text>
+                        )
+                    }
+                       {
+                           isEditing ? (
+                            <Pressable onPress={UpdatedItem}>
+                                 <Text>
+                                    save
+                                </Text>
+                            </Pressable>
+                           ) : (
+                            <Pressable onPress={editPressed}>
+                                <Text>
+                                    edit
+                                 </Text>
+                            </Pressable>
+                           )
+                       }
+                       
                 </View>
         </View>
     
