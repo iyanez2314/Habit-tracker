@@ -1,5 +1,7 @@
 import {View, Text, StyleSheet, TouchableOpacity, TextInput, Pressable, Button} from 'react-native';
 import { useState } from 'react';
+import Icon from 'react-native-vector-icons/Ionicons';
+import EditIcon from 'react-native-vector-icons/MaterialIcons';
 
 const Todo = (props) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -13,7 +15,6 @@ const Todo = (props) => {
     const {text, setEditTodo, todoItems} = props;
 
     function UpdatedItem(){
-        console.log(editedTodo);
         setIsEditing(false);
     };
 
@@ -33,26 +34,26 @@ const Todo = (props) => {
                             defaultValue={text}
                              />
                         ) : (
-                            <Text style={styles.todoText}>{props.text}</Text>
+                            <Text style={styles.todoText}>{editedTodo.length > 0 ? editedTodo : props.text }</Text>
                         )
                     }
-                       {
+                </View>
+
+                {
                            isEditing ? (
+                        <View style={styles.editButtons}>
                             <Pressable onPress={UpdatedItem}>
-                                 <Text>
-                                    save
-                                </Text>
+                                <Icon style={styles.deleteIcon} name="ios-save-outline" size={17} color='#fff'/>
                             </Pressable>
+                        </View>
                            ) : (
+                        <View style={styles.editButtons}>      
                             <Pressable onPress={editPressed}>
-                                <Text>
-                                    edit
-                                 </Text>
+                                <EditIcon name='mode-edit' size={17} color='#fff' />
                             </Pressable>
+                        </View> 
                            )
                        }
-                       
-                </View>
         </View>
     
     )
@@ -86,12 +87,8 @@ const styles = StyleSheet.create({
         maxWidth: '80%',
         color: 'white'
     },
-    circular: {
-        width: 12,
-        height: 12,
-        borderColor: '#F5F5F5',
-        borderWidth: 2,
-        borderRadius: 5
+    editButtons: {
+       
     }
 })
 

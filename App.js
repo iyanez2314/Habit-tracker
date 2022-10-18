@@ -66,8 +66,8 @@ export default function App() {
              />
             )
           }}
-            leftOpenValue={50}
-            rightOpenValue={-50}
+            leftOpenValue={100}
+            rightOpenValue={-70}
             stopLeftSwipe={1}
           />
         </View>
