@@ -4,6 +4,7 @@ import { KeyboardAvoidingView, StyleSheet, Text, View, TextInput, Button, FlatLi
 import  Todo  from './Components/Todo';
 import HiddenItemsWithActions from './Components/HiddenItemsWithActions';
 import { SwipeListView } from 'react-native-swipe-list-view';
+import RandomSaying from './Components/RandomSaying';
 
 
 export default function App() {
@@ -47,7 +48,9 @@ export default function App() {
       </View>
 
         <View style={styles.todoListItems}>
-          <SwipeListView data={todoItems} renderItem={(data, rowMap) => (
+        {
+          todoItems.length <=0 ? <RandomSaying /> : (
+            <SwipeListView data={todoItems} renderItem={(data, rowMap) => (
             <Todo text={data.item.text} setEditTodo={setEditTodo} todoItems={todoItems} key={data.item.key}/>
           )} renderHiddenItem={(data, rowMap) => {
             return (
@@ -63,6 +66,9 @@ export default function App() {
             rightOpenValue={-70}
             stopLeftSwipe={1}
           />
+          )
+        }
+          
         </View>
       </View>
     </View>

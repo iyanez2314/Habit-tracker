@@ -29,9 +29,9 @@ const Todo = (props) => {
                     <Pressable style={styles.square} onPress={toggleStrikeThrough}>
                         {
                             isOpacity ? (
-                                <Checkmark style={styles.Checkmark} name="ios-checkmark" color='#EA7351' size={20}/>
+                                <Checkmark style={styles.Checkmark} name="ios-checkmark" color='#EA7351' size={25}/>
                             ) : (
-                                <Checkmark style={[styles.Checkmark, {display: 'none'}]} name="ios-checkmark" color='#EA7351' size={20}/>
+                                <Checkmark style={[styles.Checkmark, {display: 'none'}]} name="ios-checkmark" color='#EA7351'/>
                             )
                         }
                     </Pressable>
@@ -40,11 +40,11 @@ const Todo = (props) => {
                             <TextInput
                             style={styles.updatingTodoText}
                             onChangeText={(text) => setEditedTodo(text)}
-                            defaultValue={text !== editedTodo ? editedTodo : text}
+                            defaultValue={ editedTodo !== text ? editedTodo : text }
                              />
                         ) : (
                             <Pressable style={styles.todoText} onPress={toggleStrikeThrough}>
-                                <Text style={[styles.text, {textDecorationLine: isOpacity ? 'line-through' : 'none'}]}>{editedTodo.length > 0 ? editedTodo : props.text }</Text>
+                                <Text style={[styles.text, {textDecorationLine: isOpacity ? 'line-through' : 'none', textDecorationColor: '#EA7351'}]}>{editedTodo.length > 0 ? editedTodo : text }</Text>
                             </Pressable>
                             
                         )
@@ -113,7 +113,8 @@ const styles = StyleSheet.create({
         color: '#83D5B2',
         fontSize: 16,
         backgroundColor: '#A8DFF1',
-
+        width: '80%',
+        color: 'white'
     }
 })
 
