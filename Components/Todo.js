@@ -40,7 +40,7 @@ const Todo = (props) => {
                             <TextInput
                             style={styles.updatingTodoText}
                             onChangeText={(text) => setEditedTodo(text)}
-                            defaultValue={ editedTodo !== text ? editedTodo : text }
+                            defaultValue={ editedTodo }
                              />
                         ) : (
                             <Pressable style={styles.todoText} onPress={toggleStrikeThrough}>

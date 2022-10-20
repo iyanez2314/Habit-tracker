@@ -34,6 +34,7 @@ export default function App() {
     setTodoItems(newData);
   };
 
+
   return (
     <View style={styles.container}>   
       <View style={styles.todoListContainer}>
